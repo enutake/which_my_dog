@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => FirstPage(),
+        '/quiz': (context) => QuizPage(),
       },
     );
   }
@@ -43,7 +44,41 @@ class FirstPage extends StatelessWidget {
                   "スタート",
                   style: TextStyle(fontSize: 30),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/quiz');
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+class QuizPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              'images/inu_silhouette.png',
+              width: 300,
+              height: 300,
+            ),
+            SizedBox(
+              width: 300,
+              height: 80,
+              child: RaisedButton(
+                child: Text(
+                  "スタート",
+                  style: TextStyle(fontSize: 30),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/');
+                },
               ),
             ),
           ],
