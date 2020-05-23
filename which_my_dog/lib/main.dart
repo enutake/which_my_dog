@@ -13,7 +13,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => FirstPage(),
+        '/home': (context) => FirstPage(),
         '/quiz': (context) => QuizPage(),
+        '/result': (context) => ResultPage(),
       },
     );
   }
@@ -58,6 +60,7 @@ class FirstPage extends StatelessWidget {
 class QuizPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    int correctNum = 1;
     return Scaffold(
       body: Center(
         child: Column(
@@ -68,7 +71,7 @@ class QuizPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
-                  "1/5",
+                  "$correctNum/5",
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -79,8 +82,8 @@ class QuizPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                CircleButton(icon: Icons.clear, color: Colors.purple,),
-                CircleButton(icon: Icons.favorite, color: Colors.red,),
+                CircleButton(icon: Icons.clear, color: Colors.purple, route: "/home"),
+                CircleButton(icon: Icons.favorite, color: Colors.red, route: "/result"),
               ],
             ),
           ],
@@ -93,7 +96,8 @@ class QuizPage extends StatelessWidget {
 class CircleButton extends StatelessWidget {
   final IconData icon;
   final Color color;
-  CircleButton({this.icon, this.color});
+  final String route;
+  CircleButton({this.icon, this.color, this.route});
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +115,49 @@ class CircleButton extends StatelessWidget {
           size: 60,
         ),
       ),
-      onTap: (){},
+      onTap: (){
+        Navigator.of(context).pushNamed(route);
+      },
+    );
+  }
+}
+
+class ResultPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    int correctNum = 1;
+    return Scaffold(
+      body: Center(
+        child: Column(
+          children: <Widget> [
+            Text(
+              "結果発表",
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "80点！",
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "称号 愛犬家",
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              width: 300,
+              height: 80,
+              child: RaisedButton(
+                child: Text(
+                  "トップに戻る",
+                  style: TextStyle(fontSize: 30),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/home');
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
