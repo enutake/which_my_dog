@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../model/my_app_model.dart';
 
 class CircleButton extends StatelessWidget {
   final IconData icon;
   final Color color;
-  final String route;
-  CircleButton({this.icon, this.color, this.route});
+  CircleButton({this.icon, this.color,});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class CircleButton extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.of(context).pushNamed(route);
+        Provider.of<MyAPPModel>(context, listen: false).incrementQuestionCount();
       },
     );
   }
