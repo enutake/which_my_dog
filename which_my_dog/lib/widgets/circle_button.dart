@@ -10,6 +10,7 @@ class CircleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = Provider.of<MyAPPModel>(context, listen: false);
     return InkWell(
       child: Container(
         margin: const EdgeInsets.all(20.0),
@@ -24,7 +25,10 @@ class CircleButton extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Provider.of<MyAPPModel>(context, listen: false).incrementQuestionCount();
+        model.incrementQuestionCount();
+        if(model.currentQuestionCount > 5) {
+          Navigator.of(context).pushNamed('/result');
+        }
       },
     );
   }

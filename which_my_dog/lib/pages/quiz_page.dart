@@ -8,6 +8,7 @@ class QuizPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<MyAPPModel>(context, listen: false);
+    const quizMaxLength = 5;
     return Scaffold(
       body: Center(
         child: Column(
@@ -19,7 +20,7 @@ class QuizPage extends StatelessWidget {
                 padding: const EdgeInsets.all(10.0),
                 child: Consumer<MyAPPModel>(builder: (context, model, _) {
                     return Text(
-                      '${model.currentQuestionCount}/5',
+                      '${model.currentQuestionCount}/$quizMaxLength',
                       style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     );
                   },
