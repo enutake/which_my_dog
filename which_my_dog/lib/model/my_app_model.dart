@@ -7,4 +7,8 @@ class MyAPPModel with ChangeNotifier {
     currentQuestionCount++;
     notifyListeners();
   }
+  void resetQuestionCount() {
+    currentQuestionCount = 1;
+    notifyListeners();
+  }
 }

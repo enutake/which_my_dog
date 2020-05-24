@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../model/my_app_model.dart';
 
 class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final model = Provider.of<MyAPPModel>(context, listen: false);
     int correctNum = 1;
     return Scaffold(
       body: Center(
@@ -72,6 +76,7 @@ class ResultPage extends StatelessWidget {
                     style: TextStyle(fontSize: 30),
                   ),
                   onPressed: () {
+                    model.resetQuestionCount();
                     Navigator.of(context).pushNamed('/home');
                   },
                 ),
