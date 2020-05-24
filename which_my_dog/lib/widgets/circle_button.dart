@@ -25,9 +25,10 @@ class CircleButton extends StatelessWidget {
         ),
       ),
       onTap: () {
-        model.incrementQuestionCount();
-        if(model.currentQuestionCount > 5) {
+        if(model.currentQuestionCount == 5) {
           Navigator.of(context).pushNamed('/result');
+        } else {
+          model.incrementQuestionCount();
         }
       },
     );

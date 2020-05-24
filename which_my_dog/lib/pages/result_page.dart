@@ -77,6 +77,7 @@ class ResultPage extends StatelessWidget {
                   ),
                   onPressed: () {
                     model.resetQuestionCount();
+                    model.resetQuizList();
                     Navigator.of(context).pushNamed('/home');
                   },
                 ),

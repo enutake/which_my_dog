@@ -11,34 +11,36 @@ class QuizPage extends StatelessWidget {
     const quizMaxLength = 5;
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Consumer<MyAPPModel>(builder: (context, model, _) {
-                    return Text(
-                      '${model.currentQuestionCount}/$quizMaxLength',
-                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    );
-                  },
-                )
+        child: Consumer<MyAPPModel>(
+          builder: (context, model, _)
+        {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Align(
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    '${model.currentQuestionCount}/$quizMaxLength',
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  ),
+                ),
               ),
-            ),
-            Image.asset(
-              'images/inu1.jpg',
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                CircleButton(icon: Icons.clear, color: Colors.purple),
-                CircleButton(icon: Icons.favorite, color: Colors.red),
-              ],
-            ),
-          ],
-        ),
+              Image.asset(
+                'images/${model.quizList[model.currentQuestionCount - 1]}.jpg',
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  CircleButton(icon: Icons.clear, color: Colors.purple),
+                  CircleButton(icon: Icons.favorite, color: Colors.red),
+                ],
+              ),
+            ],
+          );
+        }
+        )
       ),
     );
   }
