@@ -25,7 +25,11 @@ class CircleButton extends StatelessWidget {
         ),
       ),
       onTap: () {
+        var isLike;
+        isLike = color == Colors.red ? true : false;
+        model.setAnswerList(isLike);
         if(model.currentQuestionCount == 5) {
+          model.checkAnswer();
           Navigator.of(context).pushNamed('/result');
         } else {
           model.incrementQuestionCount();

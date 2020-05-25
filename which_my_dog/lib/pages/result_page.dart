@@ -23,7 +23,7 @@ class ResultPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "80",
+                    '${model.points}',
                     style: TextStyle(
                         fontSize: 80,
                         fontWeight: FontWeight.bold,
@@ -55,7 +55,7 @@ class ResultPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0),
                   child: Text(
-                    "愛犬家",
+                    '${model.title}',
                     style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
                     strutStyle: StrutStyle(
                         fontSize: 50,
@@ -76,6 +76,8 @@ class ResultPage extends StatelessWidget {
                     style: TextStyle(fontSize: 30),
                   ),
                   onPressed: () {
+                    model.resetAnswerList();
+                    model.resetPoint();
                     model.resetQuestionCount();
                     model.resetQuizList();
                     Navigator.of(context).pushNamed('/home');
