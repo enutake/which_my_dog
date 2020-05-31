@@ -7,8 +7,10 @@ class MyAPPModel with ChangeNotifier {
   List answerList = [];
   int points = 0;
   var title;
-  final maxImageLength = 10;
-  final titles = {0: '逆にイヌスキー', 20: '嫌犬家', 40: 'イヌスキー', 60: 'イヌラバー', 80: '飼い主', 100: '犬公方'};
+  final int maxQuizLength = 5;
+  final int maxImageLength = 10;
+  final Map titles = {0: '逆にイヌスキー', 20: '嫌犬家', 40: 'イヌスキー', 60: 'イヌラバー', 80: '飼い主', 100: '犬公方'};
+  final List imageTypes = ["aiken", "inu"];
 
   void incrementQuestionCount() {
     currentQuestionCount++;
@@ -20,12 +22,12 @@ class MyAPPModel with ChangeNotifier {
   }
 
   void generateQuizList() {
-    for(var count = 0; count < 5; count++) {
+    for(var count = 0; count < maxQuizLength; count++) {
       var rand1 = new math.Random();
       var rand2 = new math.Random();
       var randInt1 = rand1.nextInt(maxImageLength - 1) + 1;
       var randInt2 = rand2.nextInt(2);
-      var imageType = randInt2 > 0 ? "aiken" : "inu";
+      var imageType = imageTypes[randInt2];
       var fileName = imageType + randInt1.toString();
       quizList.add(fileName);
     }
