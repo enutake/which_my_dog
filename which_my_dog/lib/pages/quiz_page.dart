@@ -26,8 +26,14 @@ class QuizPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: 500, maxHeight: 600),
+                Container(
+                  padding: const EdgeInsets.all(10.0),
+                  width: 300,
+                  height: 400,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey[300], width: 1.0),
+                    color: Colors.white,
+                  ),
                   child: Image.asset(
                     'images/${model.quizList[model.currentQuestionCount - 1]}.jpg',
                   ),
