@@ -10,8 +10,8 @@ class MyAPPModel with ChangeNotifier {
   final int maxPoint = 100;
   final int maxQuizLength = 5;
   final int maxImageLength = 10;
-  final Map titles = {0: '逆にイヌスキー', 20: '嫌犬家', 40: 'イヌスキー', 60: 'イヌラバー', 80: '飼い主', 100: '犬公方'};
-  final List imageTypes = ["aiken", "inu"];
+  final Map<int, String> titles = {0: '逆にイヌスキー', 20: '嫌犬家', 40: 'イヌスキー', 60: 'イヌラバー', 80: '飼い主', 100: '犬公方'};
+  final List<String> imageTypes = ["aiken", "inu"];
 
   void incrementQuestionCount() {
     currentQuestionCount++;
@@ -23,13 +23,13 @@ class MyAPPModel with ChangeNotifier {
   }
 
   void generateQuizList() {
-    for(var count = 0; count < maxQuizLength; count++) {
+    for(int count = 0; count < maxQuizLength; count++) {
       var rand1 = new math.Random();
       var rand2 = new math.Random();
-      var randInt1 = rand1.nextInt(maxImageLength - 1) + 1;
-      var randInt2 = rand2.nextInt(2);
-      var imageType = imageTypes[randInt2];
-      var fileName = imageType + randInt1.toString();
+      int randInt1 = rand1.nextInt(maxImageLength - 1) + 1;
+      int randInt2 = rand2.nextInt(2);
+      String imageType = imageTypes[randInt2];
+      String fileName = imageType + randInt1.toString();
       quizList.add(fileName);
     }
   }
@@ -47,7 +47,7 @@ class MyAPPModel with ChangeNotifier {
   void checkAnswer() {
     final int pointPerAnswer = maxPoint ~/ maxQuizLength;
     var answerConvertedList = answerList.map((answer) => answer == true ? imageTypes[0] : imageTypes[1]).toList();
-    for(var checkCount = 0; checkCount < maxQuizLength; checkCount++) {
+    for(int checkCount = 0; checkCount < maxQuizLength; checkCount++) {
       if(quizList[checkCount].startsWith(answerConvertedList[checkCount])) {
         points += pointPerAnswer;
       }
