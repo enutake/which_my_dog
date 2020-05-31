@@ -30,11 +30,11 @@ class MyAPPModel with ChangeNotifier {
       int randInt2 = rand2.nextInt(2);
       String imageType = imageTypes[randInt2];
       String fileName = imageType + randInt1.toString();
-      quizList.add(fileName);
+      quizList.contains(fileName) == false ? quizList.add(fileName) : count--;
     }
   }
   void resetQuizList() {
-    quizList = [];
+    quizList.clear();
   }
 
   void setAnswerList(bool isLike) {
