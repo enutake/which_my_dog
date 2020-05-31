@@ -3,10 +3,11 @@ import 'dart:math' as math;
 
 class MyAPPModel with ChangeNotifier {
   int currentQuestionCount = 1;
-  List quizList = [];
-  List answerList = [];
+  List<String> quizList = [];
+  List<bool> answerList = [];
   int points = 0;
-  var title;
+  String title;
+  final int maxPoint = 100;
   final int maxQuizLength = 5;
   final int maxImageLength = 10;
   final Map titles = {0: '逆にイヌスキー', 20: '嫌犬家', 40: 'イヌスキー', 60: 'イヌラバー', 80: '飼い主', 100: '犬公方'};
@@ -44,10 +45,11 @@ class MyAPPModel with ChangeNotifier {
   }
 
   void checkAnswer() {
-    var answerConvertedList = answerList.map((answer) => answer == true ? "aiken" : "inu").toList();
-    for(var checkcount = 0; checkcount < 5; checkcount++) {
-      if(quizList[checkcount].startsWith(answerConvertedList[checkcount])) {
-        points += 20;
+    final int pointPerAnswer = maxPoint ~/ maxQuizLength;
+    var answerConvertedList = answerList.map((answer) => answer == true ? imageTypes[0] : imageTypes[1]).toList();
+    for(var checkCount = 0; checkCount < maxQuizLength; checkCount++) {
+      if(quizList[checkCount].startsWith(answerConvertedList[checkCount])) {
+        points += pointPerAnswer;
       }
     }
     title = titles[points];
